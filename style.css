@@ -1,0 +1,75 @@
+:root {
+  --red: #d7263d;
+  --darkBlue: #02182b;
+  --lightBlue: #0197f6;
+  --green: #448fa3;
+  --white: #ffffff;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  background-color: var(--white);
+  color: var(--darkBlue);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/*lista ćwiczeń*/
+.training {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+li {
+  list-style-type: none;
+}
+/*aktualne ćwiczenie*/
+#current_workout {
+  display: flex;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 30px;
+}
+/*stoper*/
+.display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.display__time-left {
+  font-size: 5rem;
+}
+.display_time-total {
+  font-size: 2.5rem;
+}
+/*przyciski*/
+
+.timer__controls {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  height: 34vh;
+}
+
+.timer__button {
+  margin: 10px;
+  padding: 15px;
+  min-height: 90px;
+  min-width: 150px;
+  border: solid 1px var(--darkBlue);
+}
+
+@media only screen and (min-width: 360px) and (max-width: 767px) {
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="display">
+        <h1 class="display__time-left">00:00</h1>
+        <p class="display__time-total">00:00:00</p>
+      </div>
+      <div class="timer__controls">
+        <div class="timer_breaks">
+          <div
+            data-time="90"
+            onclick="aktualneCwiczenie()"
+            class="timer__button"
+          >
+            1:30
+          </div>
+          <div
+            data-time="180"
+            onclick="aktualneCwiczenie()"
+            class="timer__button"
+          >
+            3:00
+          </div>
+        </div>
+        <div class="timer_end">
+          <div
+            data-time="60"
+            onclick="aktualneCwiczenie()"
+            class="timer__button"
+          >
+            1:00
+          </div>
+          <div onclick="toggleTime()" class="timer__button pauseTimer">
+            START/PAUZA
+          </div>
+        </div>
+      </div>
+      <div id="current_workout">martwy ciąg, 40kg, powtórzeń 7</div>
+      <div class="training">
+        <ul>
+          <li>Martwy Ciąg</li>
+          <li>Klata</li>
+          <li>Rowsy</li>
+          <li>Barki</li>
+          <li>Bic</li>
+          <li>Plank</li>
+        </ul>
+      </div>
+    </div>
+    <script src="scripts.js"></script>
+  </body>
+</html>
