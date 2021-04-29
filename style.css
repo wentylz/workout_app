@@ -21,9 +21,6 @@
 
 /*lista ćwiczeń*/
 .training {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 li {
