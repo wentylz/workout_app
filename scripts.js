@@ -41,23 +41,23 @@ function timer(seconds) {
     
 
     
-    function startTimer() {
-      const seconds = parseInt(this.dataset.time);
-      timer(seconds)
-    }
-    
-    
-    buttons.forEach(button => button.addEventListener('click', startTimer))
+function startTimer() {
+  const seconds = parseInt(this.dataset.time);
+  timer(seconds)
+}
 
-    var startTimerButton = document.querySelector('.startTimer');
-    var pauseTimerButton = document.querySelector('.pauseTimer');
-    var startTime;
-    var updatedTime;
-    var difference;
-    var tInterval;
-    var savedTime;
-    var paused = 0;
-    var running = 0;
+
+buttons.forEach(button => button.addEventListener('click', startTimer))
+
+var startTimerButton = document.querySelector('.startTimer');
+var pauseTimerButton = document.querySelector('.pauseTimer');
+var startTime;
+var updatedTime;
+var difference;
+var tInterval;
+var savedTime;
+var paused = 0;
+var running = 0;
 
 
       
@@ -77,54 +77,102 @@ if(!running) {
     startTimer();
   }
 }
-/*       function resetTimer(){
-        clearInterval(tInterval);
-        savedTime = 0;
-        difference = 0;
-        paused = 0;
-        running = 0;
-      
-      
-      } */
 
 
 
-      function getShowTime(){
-        updatedTime = new Date().getTime();
-        if (savedTime){
-          difference = (updatedTime - startTime) + savedTime;
-        } else {
-          difference =  updatedTime - startTime;
-        }
-        // var days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((difference % (1000 * 60)) / 1000);
-        var milliseconds = Math.floor((difference % (1000 * 60)) / 100);
-      
-        hours = (hours < 10) ? "0" + hours : hours;
-        minutes = (minutes < 10) ? "0" + minutes : minutes;
-        seconds = (seconds < 10) ? "0" + seconds : seconds;
-        milliseconds = (milliseconds < 100) ? (milliseconds < 10) ? "00" + milliseconds : "0" + milliseconds : milliseconds;
-        stoperDisplay.innerHTML = hours + ':' + minutes + ':' + seconds /* + ':' + milliseconds */;
-      }
+
+function getShowTime(){
+  updatedTime = new Date().getTime();
+  if (savedTime){
+    difference = (updatedTime - startTime) + savedTime;
+  } else {
+    difference =  updatedTime - startTime;
+  }
+  // var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+  var milliseconds = Math.floor((difference % (1000 * 60)) / 100);
+
+  hours = (hours < 10) ? "0" + hours : hours;
+  minutes = (minutes < 10) ? "0" + minutes : minutes;
+  seconds = (seconds < 10) ? "0" + seconds : seconds;
+  milliseconds = (milliseconds < 100) ? (milliseconds < 10) ? "00" + milliseconds : "0" + milliseconds : milliseconds;
+  stoperDisplay.innerHTML = hours + ':' + minutes + ':' + seconds /* + ':' + milliseconds */;
+}
 
 
 
-var lista_cwiczen = ["martwy ciąg, 40kg, powtórzeń 7","martwy ciąg, 40kg, powtórzeń 7","martwy ciąg, 40kg, powtórzeń 7",
- "klatka, 16kg x2, powtórzeń 12","klatka, 16kg x2, powtórzeń 12","klatka, 16kg x2, powtórzeń 12",
-  "Rowsy, 16kg, powtórzeń 8","Rowsy, 16kg, powtórzeń 8","Rowsy, 16kg, powtórzeń 8",
-"barki, 11kg, powtórzeń 10", "barki, 11kg, powtórzeń 10", "barki, 11kg, powtórzeń 10", "barki, 11kg, powtórzeń 10",
-"bic, 11kg, powtórzen 12", "bic, 11kg, powtórzen 12", "bic, 11kg, powtórzen 12",
-"plank, 60s", "plank, 60s", "plank, 60s"
-]
+
+
+
+const addItems = document.querySelector(".add-items");
+const itemsList = document.querySelector(".training");
+const items = JSON.parse(localStorage.getItem("items")) || [];
+
+function addItem(e) {
+  e.preventDefault();
+  const text = this.querySelector("[name=item]").value;
+  const weight = this.querySelector("[name=weight]").value;
+  const reps = this.querySelector("[name=reps]").value;
+  const item = {
+    text,
+    weight,
+    reps,
+    done: false,
+  };
+
+  items.push(item);
+  populateList(items, itemsList);
+  localStorage.setItem("items", JSON.stringify(items));
+
+  this.reset();
+}
+
+function populateList(workouts = [], workoutsList) {
+  workoutsList.innerHTML = workouts
+    .map((workout, i) => {
+      return `
+
+      <li>
+      <input type="checkbox" data-index=${i} id="item${i}" ${
+        workout.done ? "checked" : ""
+      }/>
+
+<label for="item${i}">${workout.text} ${workout.weight} ${workout.reps}</label
+</li>
+`;
+    })
+    .join("");
+}
+function toggleDone(e) {
+  if (!e.target.matches("input")) return;
+  const el = e.target;
+  const index = el.dataset.index;
+  items[index].done = !items[index].done;
+  localStorage.setItem("items", JSON.stringify(items));
+  populateList(items, itemsList);
+}
+
+addItems.addEventListener("submit", addItem);
+itemsList.addEventListener("click", toggleDone);
+populateList(items, itemsList);
+
+
+/*changes array of objects into array of strings */
+var finalArray = items.map(function (obj) {
+  return (obj.text + " " +  obj.weight);
+});
+
+
+
+/* shows current workout in browser */
 count = 0
-
 function aktualneCwiczenie(){
     document.getElementById("current_workout").innerHTML =
-    lista_cwiczen[count];
+    finalArray[count];
     count++;
-    if (count == lista_cwiczen.length) count = 0
+    if (count == items.length) count = 0
 }
 
 
