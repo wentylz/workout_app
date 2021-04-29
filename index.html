@@ -44,46 +44,42 @@
         </div>
       </div>
       <div id="current_workout">Cwiczenie</div>
-      <div class="training">
-        <ul>
-          <li>Martwy Ciąg</li>
-          <li>Klata</li>
-          <li>Rowsy</li>
-          <li>Barki</li>
-          <li>Bic</li>
-          <li>Plank</li>
-        </ul>
-      </div>
-    </div>
-    <form class="add-items">
-      <select name="item" required>
-        <option value="Martwy Ciąg">Martwy Ciąg</option>
-        <option value="Wyciskanie na ławce prostej">
-          Wyciskanie na ławce prostej
-        </option>
-        <option value="Przysiad">Przysiad</option>
-      </select>
-      <input
-        type="number"
-        name="weight"
-        placeholder="Waga 0-150kg"
-        required
-        min="0"
-        max="150"
-      />
+      <div class="training"></div>
+      <form class="add-items">
+        <select name="item" required>
+          <option value="Martwy Ciąg">Martwy Ciąg</option>
+          <option value="Wyciskanie na ławce prostej">
+            Wyciskanie na ławce prostej
+          </option>
+          <option value="Przysiad">Przysiad</option>
+          <option value="OHP">OHP</option>
+          <option value="Bicepsy">Bicepsy</option>
+          <option value="Tricepsy">Triceps</option>
+        </select>
+        <input
+          type="number"
+          name="weight"
+          placeholder="Waga 0-150kg"
+          required
+          min="0"
+          max="150"
+        />
 
-      <label for="reps">Powtórzenia:</label>
-      <select name="reps" required>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="5">4</option>
-        <option value="6">6</option>
-      </select>
-      <input type="submit" value="+ Add Item" />
-    </form>
+        <label for="reps">Powtórzenia:</label>
+        <select name="reps" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="5">4</option>
+          <option value="6">6</option>
+        </select>
+        <input type="submit" value="+ Dodaj ćwiczenie" />
+        <button onclick="localStorage.clear(),   window.location.reload()">
+          Reset
+        </button>
+      </form>
+    </div>
+
     <script src="scripts.js"></script>
   </body>
 </html>
-
-sprawdzam

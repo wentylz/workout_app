@@ -127,6 +127,7 @@ function addItem(e) {
   localStorage.setItem("items", JSON.stringify(items));
 
   this.reset();
+  window.location.reload();
 }
 
 function populateList(workouts = [], workoutsList) {
@@ -145,6 +146,8 @@ function populateList(workouts = [], workoutsList) {
     })
     .join("");
 }
+
+
 function toggleDone(e) {
   if (!e.target.matches("input")) return;
   const el = e.target;
@@ -166,7 +169,7 @@ var finalArray = items.flatMap(obj => Array.from(
 ))
 
 
-
+/*display current workout*/
 
 count = 0
 function aktualneCwiczenie(){
