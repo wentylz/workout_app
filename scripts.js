@@ -140,7 +140,7 @@ function populateList(workouts = [], workoutsList) {
         workout.done ? "checked" : ""
       }/>
 
-<label for="item${i}">${workout.text} ${workout.weight} ${workout.reps}</label
+<label for="item${i}">${workout.text} ${workout.weight}kg x${workout.reps}</label
 </li>
 `;
     })

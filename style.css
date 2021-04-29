@@ -82,4 +82,8 @@ label {
   margin: 10px;
 }
 @media only screen and (min-width: 360px) and (max-width: 767px) {
+  form {
+    display: flex;
+    flex-direction: column;
+  }
 }
