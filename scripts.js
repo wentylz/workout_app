@@ -160,19 +160,20 @@ populateList(items, itemsList);
 
 
 /*changes array of objects into array of strings */
-var finalArray = items.map(function (obj) {
-  return (obj.text + " " +  obj.weight);
-});
+var finalArray = items.flatMap(obj => Array.from(
+  { length: +obj.reps }, 
+  () => `${obj.text} ${obj.weight}`
+))
 
 
 
-/* shows current workout in browser */
+
 count = 0
 function aktualneCwiczenie(){
     document.getElementById("current_workout").innerHTML =
     finalArray[count];
     count++;
-    if (count == items.length) count = 0
+    if (count == finalArray.length) count = 0
 }
 
 
