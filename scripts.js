@@ -6,16 +6,18 @@ var one= new Audio("1.ogg")
 const timerDisplay = document.querySelector('.display__time-left')
 const stoperDisplay = document.querySelector('.display__time-total')
 const buttons = document.querySelectorAll('[data-time]')
-
+/*countdown timer*/
 function timer(seconds) {
     clearInterval(countdown)
-
+/*set current time, and selected time*/
     const now = Date.now()
     const then = now + seconds*1000
+/*run once at start*/
     displayTimeLeft(seconds)
     
     countdown = setInterval(() =>{
     const secondsLeft = Math.round((then - Date.now())/1000)
+/*countdown for music effects*/
     if(secondsLeft == 3)
     three.play()
     else if(secondsLeft == 2)
@@ -24,13 +26,16 @@ function timer(seconds) {
     one.play()
     else if(secondsLeft ==0)
     audio.play()
+/*stop interval*/
     else if(secondsLeft <0) {
         clearInterval(countdown)
         return
     }
+
     displayTimeLeft(secondsLeft)
     }, 1000)}
 
+   /*function for display*/
     function displayTimeLeft(seconds) {
         const minutes = Math.floor(seconds / 60)
         const remainderSeconds = seconds % 60
@@ -38,17 +43,15 @@ function timer(seconds) {
         document.title = display
         timerDisplay.textContent = display
     }
-    
 
-    
 function startTimer() {
   const seconds = parseInt(this.dataset.time);
   timer(seconds)
 }
-
-
 buttons.forEach(button => button.addEventListener('click', startTimer))
 
+
+/*stoper*/ 
 var startTimerButton = document.querySelector('.startTimer');
 var pauseTimerButton = document.querySelector('.pauseTimer');
 var startTime;
@@ -105,7 +108,7 @@ function getShowTime(){
 
 
 
-
+/*workout list*/
 const addItems = document.querySelector(".add-items");
 const itemsList = document.querySelector(".training");
 const items = JSON.parse(localStorage.getItem("items")) || [];
