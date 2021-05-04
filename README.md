@@ -2,4 +2,4 @@
 
 Workout application that allows to track breaks between exercises, and showing current exercise.
 
-Working on adding own exercises with different weights and times.
+I made it to track my exercises routine with only few buttons, to not disturb me during weight lifting.
