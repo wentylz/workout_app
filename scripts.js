@@ -176,10 +176,14 @@ var finalArray = items.flatMap(obj => Array.from(
 
 count = 0
 function aktualneCwiczenie(){
+if (finalArray.length > 0) {
     document.getElementById("current_workout").innerHTML =
     finalArray[count];
     count++;
-    if (count == finalArray.length) count = 0
+    if (count == finalArray.length) count = 0}
+  else{
+    return "Dodaj Ćwiczenie"
+  }
 }
 
 
